@@ -1,0 +1,35 @@
+# Step 1: Install necessary libraries
+!pip install roboflow
+!pip install wandb
+!pip install ultralytics
+# Step 2: Import libraries
+import roboflow
+import wandb
+from ultralytics import YOLO
+# Step 3: Download the dataset using Roboflow
+!pip install roboflow
+
+from roboflow import Roboflow
+rf = Roboflow(api_key="p1SIV48EbkCl5CmZC2ic")
+project = rf.workspace("vision-task-7zvcx").project("aquarium-data-cots-p998v")
+version = project.version(2)
+dataset = version.download("yolov8")
+# Step 4: Configure the YOLOv8 model
+model = YOLO('yolov8n.pt')  # Choose the appropriate YOLOv8 model
+!pip install ultralytics
+from ultralytics import YOLO
+
+# Load a pre-trained YOLOv8 model
+model = YOLO('yolov8n.pt')  # 'yolov8n.pt' is the smallest YOLOv8 model. Other options are 'yolov8s.pt', 'yolov8m.pt', etc.
+# Train the YOLOv8 model
+model.train(
+    data="https://app.roboflow.com/ds/M0dU1I8DPc?key=kXcDvbkk42",  # Path to the data.yaml file
+    epochs=50,               # Number of epochs to train the model
+    batch=16,                # Batch size (depends on GPU memory)
+    imgsz=640,               # Image size for training
+    project='yolov8_train',  # Directory where results are saved
+    name='aquarium_cots',    # Name of the training run
+    exist_ok=True            # If True, existing project folders can be overwritten
+)
+metrics = model.val()
+print(metrics)
