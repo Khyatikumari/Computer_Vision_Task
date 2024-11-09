@@ -47,6 +47,11 @@ epochs: 50
 batch: 16
 
 imgsz: 640
+## Training Graph
+![training graph](https://github.com/user-attachments/assets/8fa3bc01-b062-414a-b4aa-ea8e63931e1b)
+## Dataset
+![Dataset](https://github.com/user-attachments/assets/0189f40d-4ed8-4c4f-a4af-b3b3941fff2b)
+
 ## Output Metrics
 The model outputs the following metrics:
 
